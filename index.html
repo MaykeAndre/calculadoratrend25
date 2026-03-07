@@ -147,7 +147,35 @@
         }
         .card:hover { transform: translateY(-5px); border-left-color: var(--gold-primary); box-shadow: 0 5px 20px rgba(255, 193, 7, 0.15); }
         .card-icon { position: absolute; right: 15px; top: 15px; font-size: 2.5rem; opacity: 0.1; color: #fff; }
-        .card h4 { color: var(--text-gray); margin: 0 0 5px 0; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* Ajuste do Título do Card e da Etiqueta de Desconto */
+        .card-header {
+            display: flex;
+            align-items: center; /* Alinha verticalmente */
+            flex-wrap: wrap; /* Permite quebrar linha se não couber */
+            gap: 5px; /* Espaçamento entre o título e a etiqueta */
+            margin: 0 0 5px 0;
+        }
+        
+        .card h4 { 
+            color: var(--text-gray); 
+            font-weight: 500; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            margin: 0; /* Remove a margem padrão para alinhar melhor no flex */
+        }
+        
+        .discount-badge {
+            background: var(--gold-primary); 
+            color: #000; 
+            padding: 2px 6px; /* Ajustei o padding para ficar mais compacto */
+            border-radius: 4px; 
+            font-weight: 800; 
+            font-size: 0.75rem; /* Ajustei o tamanho da fonte */
+            display: inline-block; /* Garante que respeite o padding/margin */
+        }
+
         .card .main-value { font-size: 1.8rem; font-weight: 700; margin: 5px 0; color: #fff; }
         
         .sub-info { font-size: 0.85rem; color: #666; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 8px; margin-top: 8px; }
@@ -174,9 +202,16 @@
             background: var(--card-dark); border: 1px solid var(--border-color);
             padding: 15px 15px 25px 15px; border-radius: 12px; position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); height: auto;
+            display: flex; flex-direction: column;
         }
-        .chart-title { text-align: center; color: var(--gold-primary); margin-bottom: 10px; font-weight: 600; font-size: 1rem; }
-        .canvas-wrapper { position: relative; height: 250px; width: 100%; }
+        .chart-title { text-align: center; color: var(--gold-primary); margin-bottom: 10px; font-weight: 600; font-size: 1rem; width: 100%; display: block;}
+        
+        .canvas-wrapper { 
+            position: relative; 
+            height: 250px; 
+            width: 100%; 
+            display: block;
+        }
 
         /* ASSINATURAS */
         .signatures-area { display: none; }
@@ -194,63 +229,90 @@
         @media print {
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             /* Zera margens da página padrão e define tamanho A4 para forçar o encaixe */
-            @page { size: A4; margin: 10mm 15mm; } 
+            @page { size: A4 portrait; margin: 5mm 10mm; } 
             
             body { background: #ffffff !important; color: #000000 !important; }
-            .container { max-width: 100% !important; padding: 0 !important; }
+            .container { max-width: 100% !important; padding: 0 !important; width: 100% !important; display: block !important;}
             
             .logo-wrapper { background-color: #0A0A0A !important; border: none !important; margin: 0 auto !important; padding: 5px 15px !important;}
-            .logo-img { max-height: 45px !important; }
-            header { border-bottom: 2px solid #0A0A0A !important; padding: 5px 0 10px 0 !important; margin-bottom: 10px !important;}
+            .logo-img { max-height: 35px !important; }
+            header { border-bottom: 2px solid #0A0A0A !important; padding: 0 0 5px 0 !important; margin-bottom: 5px !important;}
 
             .buttons-wrapper, .switch-container, .slider-wrapper { display: none !important; }
             
-            .conversion-banner { background: #fdfaf0 !important; border-left: 5px solid #b38600 !important; color: #333 !important; box-shadow: none !important; padding: 10px !important; font-size: 1rem !important; margin-bottom: 15px !important;}
-            .conversion-banner strong { color: #1b6b36 !important; font-size: 1.1rem !important;} 
+            .conversion-banner { background: #fdfaf0 !important; border-left: 5px solid #b38600 !important; color: #333 !important; box-shadow: none !important; padding: 5px 10px !important; font-size: 0.85rem !important; margin-bottom: 10px !important;}
+            .conversion-banner strong { color: #1b6b36 !important; font-size: 0.95rem !important;} 
 
-            .inputs-container { background: #ffffff !important; border: 1px solid #ccc !important; box-shadow: none !important; margin-bottom: 15px !important; padding: 15px !important; gap: 8px !important; }
+            .inputs-container { background: #ffffff !important; border: 1px solid #ccc !important; box-shadow: none !important; margin-bottom: 10px !important; padding: 10px !important; gap: 5px !important; }
             .input-group select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background: transparent !important; } 
             
             .input-group input, .input-group select {
                 background: transparent !important; border: none !important; border-bottom: 1px solid #777 !important; color: #000 !important;
-                border-radius: 0 !important; height: 20px !important; padding: 0 2px !important; font-size: 0.9rem !important; font-weight: 500 !important;
+                border-radius: 0 !important; height: 18px !important; padding: 0 2px !important; font-size: 0.85rem !important; font-weight: 500 !important;
             }
-            .input-group label { color: #555 !important; font-weight: bold; font-size: 0.75rem !important; margin-bottom: 2px !important;}
-            .section-title { color: #000 !important; border-bottom: 2px solid #000 !important; font-weight: 800; font-size: 1rem !important; margin-bottom: 5px !important; padding-bottom: 3px !important;}
+            .input-group label { color: #555 !important; font-weight: bold; font-size: 0.65rem !important; margin-bottom: 0px !important;}
+            .section-title { color: #000 !important; border-bottom: 2px solid #000 !important; font-weight: 800; font-size: 0.85rem !important; margin-bottom: 5px !important; padding-bottom: 2px !important;}
 
-            .dash-title { color: #000 !important; text-shadow: none !important; font-size: 1.5rem !important; margin: 5px 0 !important;}
-            .dash-subtitle { color: #555 !important; font-size: 0.85rem !important; margin-bottom: 10px !important;}
+            .dash-title { color: #000 !important; text-shadow: none !important; font-size: 1.3rem !important; margin: 5px 0 !important;}
+            .dash-subtitle { color: #555 !important; font-size: 0.75rem !important; margin-bottom: 5px !important;}
 
-            .cards-grid { gap: 10px !important; margin-bottom: 15px !important; }
-            .card { background: #fff !important; border: 1px solid #ddd !important; break-inside: avoid; box-shadow: none !important; padding: 10px 15px !important;}
-            .card h4 { color: #000 !important; font-weight: bold !important; font-size: 0.75rem !important; }
-            .card .main-value { color: #000 !important; font-size: 1.5rem !important; margin: 2px 0 !important;}
-            .sub-info { border-top-color: #ccc !important; color: #333 !important; padding-top: 5px !important; margin-top: 5px !important; font-size: 0.75rem !important;}
+            .cards-grid { gap: 5px !important; margin-bottom: 10px !important; grid-template-columns: repeat(4, 1fr) !important; }
+            .card { background: #fff !important; border: 1px solid #ddd !important; break-inside: avoid; box-shadow: none !important; padding: 8px !important;}
+            
+            /* Ajuste específico para a impressão do título e etiqueta de desconto */
+            .card-header { gap: 3px !important; align-items: flex-start !important; }
+            .card h4 { color: #000 !important; font-weight: bold !important; font-size: 0.6rem !important; line-height: 1.1 !important; }
+            .discount-badge { font-size: 0.55rem !important; padding: 1px 4px !important; line-height: 1 !important;}
+
+            .card .main-value { color: #000 !important; font-size: 1.1rem !important; margin: 2px 0 !important;}
+            .sub-info { border-top-color: #ccc !important; color: #333 !important; padding-top: 3px !important; margin-top: 3px !important; font-size: 0.6rem !important;}
             
             .print-label { color: #333 !important; font-weight: 800 !important; }
             .card-icon { display: none !important; }
 
             .text-gold { color: #8a6600 !important; } 
             .text-green { color: #1b6b36 !important; } 
-            .highlight-trend { background: transparent !important; color: #8a6600 !important; border: none !important; padding: 0 !important; font-size: 1rem !important;}
-            .highlight-economy { text-shadow: none !important; color: #1b6b36 !important; font-size: 1.1rem !important;}
-            .reward-box { background: transparent !important; border: 1px solid #ccc !important; padding: 5px !important; margin-top: 2px !important;}
-            .reward-text { color: #000 !important; font-size: 0.75rem !important;}
+            .highlight-trend { background: transparent !important; color: #8a6600 !important; border: none !important; padding: 0 !important; font-size: 0.8rem !important;}
+            .highlight-economy { text-shadow: none !important; color: #1b6b36 !important; font-size: 0.9rem !important;}
+            .reward-box { background: transparent !important; border: 1px solid #ccc !important; padding: 4px !important; margin-top: 2px !important;}
+            .reward-text { color: #000 !important; font-size: 0.6rem !important;}
 
-            .charts-row { gap: 10px !important; margin-bottom: 10px !important; }
-            .chart-container { background: #fff !important; border: 1px solid #ccc !important; break-inside: avoid; box-shadow: none !important; padding: 10px 10px 20px 10px !important; }
-            .chart-title { color: #000 !important; font-weight: bold !important; font-size: 0.9rem !important; margin-bottom: 5px !important;}
+            .charts-row { gap: 10px !important; margin-bottom: 5px !important; display: flex !important; width: 100% !important;}
             
-            /* REDUÇÃO DRÁSTICA PARA CABER NA PÁGINA */
-            .canvas-wrapper { height: 180px !important; } 
+            /* A SOLUÇÃO FINAL PARA O GRÁFICO NA IMPRESSÃO */
+            .chart-container { 
+                background: #fff !important; 
+                border: 1px solid #ccc !important; 
+                break-inside: avoid; 
+                box-shadow: none !important; 
+                padding: 10px !important; 
+                width: 48% !important; /* Força cada gráfico a ocupar metade do espaço lado a lado */
+                display: block !important;
+                box-sizing: border-box !important;
+            }
+            .chart-title { color: #000 !important; font-weight: bold !important; font-size: 0.8rem !important; margin-bottom: 10px !important;}
             
-            .signatures-area { display: flex !important; justify-content: space-between; margin-top: 40px !important; page-break-inside: avoid; }
+            /* TRAVA DE LARGURA ABSOLUTA PARA O CANVAS */
+            .canvas-wrapper { 
+                height: 180px !important; 
+                width: 100% !important; 
+                max-width: 100% !important;
+                display: block !important;
+            } 
+            
+            canvas {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 100% !important;
+            }
+            
+            .signatures-area { display: flex !important; justify-content: space-between; margin-top: 20px !important; page-break-inside: avoid; }
             .sign-box { text-align: center; width: 45%; } 
-            .sign-line { border-top: 1px solid #000; margin-bottom: 5px; margin-top: 50px !important; } 
-            .sign-name { font-weight: bold; font-size: 0.9rem !important; }
-            .sign-role { font-size: 0.75rem !important; color: #555 !important; }
+            .sign-line { border-top: 1px solid #000; margin-bottom: 2px; margin-top: 30px !important; } 
+            .sign-name { font-weight: bold; font-size: 0.8rem !important; }
+            .sign-role { font-size: 0.65rem !important; color: #555 !important; }
 
-            footer { border-top-color: #000 !important; color: #000 !important; padding: 10px 0 0 0 !important; margin-top: 15px !important; font-size: 0.65rem !important; }
+            footer { border-top-color: #000 !important; color: #000 !important; padding: 5px 0 0 0 !important; margin-top: 5px !important; font-size: 0.55rem !important; }
         }
     </style>
 </head>
@@ -264,7 +326,7 @@
 
     <div class="container">
         <h1 class="dash-title">Proposta de Viabilidade - Trend Energy</h1>
-        <p class="dash-subtitle">Simulação Financeira e Transição Energética</p>
+
 
         <div class="conversion-banner" id="conversionBanner">
             Pare de alugar sua energia. Assine a Trend Energy e economize.
@@ -363,10 +425,10 @@
         <div class="cards-grid">
             <div class="card">
                 <i class="fas fa-building card-icon"></i>
-                <div>
+                <div class="card-header">
                     <h4>Custo Sem a Trend (Atual)</h4>
-                    <div class="main-value" id="totalCelesc">R$ 0,00</div>
                 </div>
+                <div class="main-value" id="totalCelesc">R$ 0,00</div>
                 <div class="sub-info">
                     <span>Tarifa Base (Concessionária):</span>
                     <span id="displayTarifa">R$ 0,00</span>
@@ -376,7 +438,10 @@
             <div class="card" style="border-left-color: var(--gold-primary);">
                 <i class="fas fa-bolt card-icon text-gold"></i>
                 <div>
-                    <h4>Seu Custo Com a Trend <span id="labelDescontoCard" style="background:var(--gold-primary); color:#000; padding:2px 8px; border-radius:4px; font-weight:800; font-size:0.8rem; margin-left:5px;">25% OFF</span></h4>
+                    <div class="card-header">
+                        <h4>Seu Custo Com a Trend</h4>
+                        <span id="labelDescontoCard" class="discount-badge">25% OFF</span>
+                    </div>
                     <div class="main-value text-gold" id="totalTrend">R$ 0,00</div>
                     
                     <div style="margin-top:5px; font-size:0.9rem; color:#888;">
@@ -392,7 +457,9 @@
 
             <div class="card" style="border-left-color: var(--success-dark);">
                 <i class="fas fa-chart-line card-icon text-green"></i>
-                <h4 id="labelRetorno">Retorno Financeiro (Economia Total)</h4>
+                <div class="card-header">
+                    <h4 id="labelRetorno">Retorno Financeiro (Economia Total)</h4>
+                </div>
                 <div class="main-value text-green" id="economiaAcumulada">R$ 0,00</div>
                 
                 <div class="reward-box" id="rewardBox">
@@ -408,10 +475,10 @@
 
             <div class="card" style="border-left-color: #2E8B57;">
                 <i class="fas fa-leaf card-icon" style="color: #2E8B57;"></i>
-                <div>
+                <div class="card-header">
                     <h4>Selo Sustentável (CO₂ Evitado)</h4>
-                    <div class="main-value" style="color: #2E8B57;" id="co2Total">0 ton</div>
                 </div>
+                <div class="main-value" style="color: #2E8B57;" id="co2Total">0 ton</div>
                 <div class="sub-info">
                     <span>Equivalente a plantar:</span>
                     <span id="arvoresTotal" style="color: #2E8B57; font-weight: 700;">0 Árvores</span>
@@ -451,7 +518,7 @@
     </div>
 
     <footer>
-        <p>Proposta Comercial confidencial gerada pelo sistema de viabilidade <strong>Trend Energy</strong>.</p>
+        <p>Proposta gerada pelo sistema de viabilidade <strong>Trend Energy</strong>.</p>
         <p>Descubra seu potencial completo: <a href="https://www.trendholding.com.br/assinaturasolar" target="_blank" class="footer-link">trendholding.com.br/assinaturasolar</a></p>
     </footer>
 
@@ -472,7 +539,7 @@
                 printPapel.innerText = "Empresa / Assinante";
             } else {
                 labelNome.innerText = "Nome Completo do Cliente";
-                inputNome.placeholder = "Ex: João Silva";
+                inputNome.placeholder = "Ex: João Silva Sauro";
                 labelRetorno.innerText = "Acúmulo de Riqueza (Economia Total)";
                 printPapel.innerText = "Cliente / Assinante";
             }
@@ -541,10 +608,7 @@
             let anos = parseInt(document.getElementById('anosInput').value);
             const perfil = document.getElementById('tipoCliente').value;
             
-            // PEGA O DESCONTO DIGITADO
             const descontoInput = parseFloat(document.getElementById('descontoTrend').value) || 25;
-            
-            // ATUALIZA O LABEL DO CARD (Ex: 15% OFF)
             document.getElementById('labelDescontoCard').innerText = descontoInput + "% OFF";
 
             const usaInflacao = document.getElementById('checkInflacao').checked;
@@ -615,14 +679,15 @@
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
-                    layout: { padding: { bottom: 15 } },
+                    animation: { duration: 0 }, 
+                    layout: { padding: { left: 10, right: 10, top: 10, bottom: 10 } },
                     plugins: { 
                         legend: { display: false },
                         tooltip: { backgroundColor: '#111', titleFont: {size: 14}, bodyFont: {size: 16, weight: 'bold'}, padding: 12, displayColors: false, callbacks: { label: function(context) { return formatNumberBR(context.raw); } } }
                     },
                     scales: {
                         y: { beginAtZero: true, grid: { color: 'rgba(200, 200, 200, 0.1)' }, ticks: { color: '#888', callback: function(val){ return 'R$ ' + val;} } },
-                        x: { grid: {display: false}, ticks: { color: '#888', font: {weight: 'bold', size: 14} } }
+                        x: { grid: {display: false}, ticks: { color: '#888', font: {weight: 'bold', size: 12} } }
                     }
                 }
             });
@@ -648,14 +713,15 @@
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false,
-                    layout: { padding: { bottom: 15, right: 15 } },
+                    animation: { duration: 0 },
+                    layout: { padding: { left: 10, right: 20, top: 10, bottom: 10 } }, 
                     plugins: { 
                         legend: { display: false },
                         tooltip: { backgroundColor: '#111', titleFont: {size: 14}, bodyFont: {size: 16, weight: 'bold'}, padding: 12, displayColors: false, callbacks: { label: function(context) { return '+ ' + formatNumberBR(context.raw); } } }
                     },
                     scales: {
                         y: { grid: { color: 'rgba(200, 200, 200, 0.1)' }, ticks: { color: '#888', callback: function(val){ return 'R$ ' + (val/1000) + 'k';} } },
-                        x: { grid: {display: false}, ticks: { color: '#888' } }
+                        x: { grid: {display: false}, ticks: { color: '#888', font: {size: 10} } }
                     }
                 }
             });
