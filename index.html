@@ -48,7 +48,6 @@
             display: inline-block;
             border-radius: 12px;
             border: 1px solid #222;
-            /* Sombra estilosa solicitada */
             box-shadow: 0 8px 25px rgba(255, 193, 7, 0.15), 0 0 10px rgba(0,0,0,0.8);
         }
 
@@ -100,9 +99,7 @@
             align-items: flex-end; justify-content: flex-start;
         }
 
-        .summary-section {
-            display: block; 
-        }
+        .summary-section { display: block; }
 
         .section-title { width: 100%; color: var(--gold-primary); margin: 0 0 15px 0; font-size: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
         .input-group { flex: 1; min-width: 180px; }
@@ -212,7 +209,6 @@
         /* --- LAYOUT DE IMPRESSÃO OTIMIZADO (A4 - 2 PÁGINAS C/ SEGURANÇA) --- */
         @media print {
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            /* Reduzido de 15mm para 10mm para dar mais "respiro" vertical aos cards da Pág 1 */
             @page { size: A4 portrait; margin: 10mm; } 
             
             body { background: #ffffff !important; color: #000000 !important; font-size: 11pt !important; }
@@ -229,18 +225,16 @@
                 margin: 0 auto !important; 
                 display: inline-block !important;
                 border: 1px solid #000 !important;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.8) !important; /* Mantém a sombra */
+                box-shadow: 0 5px 15px rgba(0,0,0,0.8) !important; 
             }
             .logo-img { max-height: 45px !important; filter: none !important; }
             header { border-bottom: 2px solid #ddd !important; padding: 0 0 10px 0 !important; margin-bottom: 10px !important;}
 
             .dash-title { color: #000 !important; text-shadow: none !important; font-size: 1.6rem !important; margin: 5px 0 !important;}
             
-            /* Compactando o banner */
             .conversion-banner { background: #fdfaf0 !important; border-left: 5px solid #b38600 !important; color: #333 !important; padding: 8px 12px !important; font-size: 0.95rem !important; margin-bottom: 15px !important;}
             .conversion-banner strong { color: #1b6b36 !important; font-size: 1.05rem !important;} 
 
-            /* Reduzindo as caixas de formulário para sobrar espaço pros cards */
             .inputs-container { background: #fff !important; border: 1px solid #ddd !important; box-shadow: none !important; margin-bottom: 15px !important; padding: 10px 15px !important; gap: 8px !important; }
             .section-title { color: #000 !important; border-bottom: 2px solid #000 !important; font-weight: 700; font-size: 1rem !important; margin-bottom: 8px !important; padding-bottom: 4px !important;}
             
@@ -251,7 +245,6 @@
             }
             .input-group label { color: #555 !important; font-weight: bold; font-size: 0.75rem !important; margin-bottom: 2px !important;}
 
-            /* Reduzindo a altura dos cards e forçando grade 2x2 compacta */
             .cards-grid { gap: 10px !important; margin-bottom: 0 !important; grid-template-columns: repeat(2, 1fr) !important; }
             .card { background: #fafafa !important; border: 1px solid #ddd !important; border-left-width: 4px !important; break-inside: avoid; box-shadow: none !important; padding: 12px !important;}
             
@@ -270,32 +263,35 @@
             .reward-text { color: #333 !important; font-size: 0.7rem !important; }
 
             /* ========================================= */
-            /* PÁGINA 2: QUEBRA DE PÁGINA RIGOROSA       */
+            /* PÁGINA 2: AJUSTE RIGOROSO DE ALTURA       */
             /* ========================================= */
             .page-break { page-break-before: always; break-before: page; margin-top: 0; }
 
-            .summary-section { background: #fff !important; border: 1px solid #ddd !important; box-shadow: none !important; margin-top: 0 !important; padding: 15px !important; margin-bottom: 20px !important;}
+            .summary-section { background: #fff !important; border: 1px solid #ddd !important; box-shadow: none !important; margin-top: 0 !important; padding: 12px 15px !important; margin-bottom: 15px !important;}
             .summary-content { color: #333 !important; font-size: 0.95rem !important; line-height: 1.4 !important; }
             .summary-content strong { color: #000 !important; font-weight: bold !important; }
 
-            /* Reduzido a altura do canvas para não empurrar a assinatura para a pág 3 */
-            .charts-row { display: flex !important; gap: 15px !important; margin-bottom: 20px !important; width: 100% !important; flex-direction: row !important; }
+            .charts-row { display: flex !important; gap: 15px !important; margin-bottom: 15px !important; width: 100% !important; flex-direction: row !important; }
             .chart-container { 
                 background: #fff !important; border: 1px solid #ddd !important; box-shadow: none !important; 
                 padding: 10px !important; width: 50% !important; box-sizing: border-box !important; break-inside: avoid;
             }
             .chart-title { color: #000 !important; font-weight: bold !important; font-size: 0.9rem !important; margin-bottom: 10px !important;}
-            .canvas-wrapper { height: 180px !important; width: 100% !important; } 
+            
+            /* REDUZIDO PARA PUXAR AS ASSINATURAS PARA CIMA E NÃO VAZAR O RODAPÉ */
+            .canvas-wrapper { height: 160px !important; width: 100% !important; } 
             canvas { width: 100% !important; max-width: 100% !important; height: 100% !important; }
 
             /* ASSINATURAS ESPAÇOSAS PARA PÁGINA 2 */
-            .signatures-area { display: flex !important; justify-content: space-around; margin-top: 40px !important; page-break-inside: avoid; }
+            .signatures-area { display: flex !important; justify-content: space-around; margin-top: 25px !important; page-break-inside: avoid; }
             .sign-box { text-align: center; width: 40%; } 
-            .sign-line { border-top: 1px solid #000; margin-bottom: 8px; margin-top: 40px !important; } 
+            .sign-line { border-top: 1px solid #000; margin-bottom: 8px; margin-top: 30px !important; } 
             .sign-name { font-weight: bold; font-size: 0.95rem !important; color: #000 !important; }
             .sign-role { font-size: 0.8rem !important; color: #555 !important; }
 
+            /* REMOVENDO MARGENS INVISÍVEIS DO RODAPÉ */
             footer { border-top-color: #ddd !important; color: #333 !important; padding: 10px 0 0 0 !important; margin-top: 15px !important; font-size: 0.75rem !important; }
+            footer p { margin: 2px 0 !important; }
         }
     </style>
 </head>
@@ -456,14 +452,14 @@
             </div>
 
             <div class="card" style="border-left-color: #2E8B57;">
-                <i class="fas fa-leaf card-icon" style="color: #2E8B57;"></i>
+                <i class="fas fa-tree card-icon" style="color: #2E8B57;"></i>
                 <div class="card-header">
                     <h4>Selo Sustentável (CO₂ Evitado)</h4>
                 </div>
                 <div class="main-value" style="color: #2E8B57;" id="co2Total">0 ton</div>
                 <div class="sub-info">
                     <span>Equivalente a plantar:</span>
-                    <span id="arvoresTotal" style="color: #2E8B57; font-weight: 700;">0 Árvores</span>
+                    <span id="arvoresTotal" style="color: #2E8B57; font-weight: 700;">0 Árvores 🌳</span>
                 </div>
             </div>
         </div>
@@ -632,20 +628,23 @@
             const clienteNome = document.getElementById('clienteNome').value || (perfil === 'PJ' ? "a empresa" : "você");
             document.getElementById('conversionBanner').innerHTML = `Pare de pagar contas caras. Com a Trend Energy, <strong>${clienteNome} deixará de gastar ${formatNumberBR(economiaAcumuladaTotal)}</strong> em ${anos} anos. Transforme passivo em lucro.`;
 
-            // --- GERAÇÃO DO RESUMO DETALHADO ---
-            const termoPerfil = perfil === 'PJ' ? 'a sua empresa' : 'a sua residência';
+            // --- GERAÇÃO DO RESUMO DETALHADO OTIMIZADO PARA ASSINATURA ---
+            const termoPerfil = perfil === 'PJ' ? 'o caixa da sua empresa' : 'o seu bolso';
             const textoInflacao = usaInflacao ? `e uma inflação energética estimada em <strong>${(inflacaoRate*100).toFixed(0)}% ao ano</strong>` : `em um cenário conservador <strong>sem correção de inflação energética</strong>`;
             
             const htmlResumo = `
+                <p>Este documento formaliza a sua proposta de <strong>Energia por Assinatura</strong> com a Trend Energy. Um modelo inteligente e 100% digital que permite a redução imediata na sua conta de luz sem a necessidade de comprar painéis solares, sem obras e com <strong>zero investimento inicial</strong>.</p>
+                
                 <ul>
-                    <li><strong>Perfil de Consumo Declarado:</strong> Média de ${consumo} kWh/mês.</li>
-                    <li><strong>Custo Referência (Concessionária):</strong> O gasto mensal estimado no mercado cativo é de ${formatNumberBR(totalMedio)} (tarifa de ${formatNumberBR(tarifa, true, 4)}/kWh).</li>
-                    <li><strong>Nova Condição Trend Energy:</strong> Aplicando o desconto garantido de <strong>${descontoInput}%</strong>, sua nova tarifa será de ${formatNumberBR(trendKwh, true, 4)}/kWh, resultando em um custo mensal de apenas <strong>${formatNumberBR(totalTrend)}</strong>.</li>
-                    <li><strong>Geração de Caixa Imediata:</strong> Economia de <strong>${formatNumberBR(economiaMensalInicial)}</strong> livres todos os meses para ${termoPerfil}.</li>
-                    <li><strong>Projeção Financeira a Longo Prazo (${anos} anos):</strong> Levando em conta o seu consumo contínuo ${textoInflacao}, o montante acumulado que deixará de ser gasto com energia alcançará expressivos <strong>${formatNumberBR(economiaAcumuladaTotal)}</strong>.</li>
-                    <li><strong>Impacto Socioambiental Positivo:</strong> Ao utilizar energia limpa ao longo deste período, você evitará a emissão de <strong>${co2Evitado.toFixed(1)} toneladas de CO₂</strong>, impacto equivalente ao plantio de <strong>${Math.floor(arvoresPlantadas)} árvores</strong>.</li>
+                    <li><strong>Seu Perfil de Consumo:</strong> Média declarada de ${consumo} kWh/mês.</li>
+                    <li><strong>Cenário Atual (Mercado Cativo):</strong> Hoje, seu gasto mensal estimado na distribuidora local é de ${formatNumberBR(totalMedio)} (tarifa base de ${formatNumberBR(tarifa, true, 4)}/kWh).</li>
+                    <li><strong>Plano de Assinatura Trend:</strong> Com o nosso desconto garantido em contrato de <strong>${descontoInput}%</strong> na tarifa de energia, seu custo mensal despenca para cerca de <strong>${formatNumberBR(totalTrend)}</strong> (nova tarifa efetiva de ${formatNumberBR(trendKwh, true, 4)}/kWh).</li>
+                    <li><strong>Injeção de Caixa Imediata:</strong> Isso representa uma economia de <strong>${formatNumberBR(economiaMensalInicial)}</strong> livres todos os meses para ${termoPerfil}.</li>
+                    <li><strong>Acúmulo de Riqueza (${anos} anos):</strong> Mantendo este consumo ${textoInflacao}, o valor total que você deixará de entregar para a concessionária atingirá impressionantes <strong>${formatNumberBR(economiaAcumuladaTotal)}</strong>. É lucro gerado sem nenhum custo de adesão.</li>
+                    <li><strong>Selo Sustentável:</strong> Além da vantagem financeira, sua assinatura ajuda o planeta. Você evitará a emissão de <strong>${co2Evitado.toFixed(1)} toneladas de CO₂</strong> (impacto ambiental equivalente ao plantio de <strong>${Math.floor(arvoresPlantadas)} árvores 🌳</strong>).</li>
                 </ul>
-                <p>O processo de assinatura não exige compra de equipamentos, adequações na rede elétrica local ou investimentos iniciais, mitigando totalmente o risco financeiro e operacional da operação.</p>
+
+                <p><strong>Como funciona na prática?</strong> A energia continuará chegando até você pela mesma infraestrutura da concessionária local, com a mesma confiabilidade. A única mudança é que, a partir de agora, você consome uma energia de fonte limpa e paga muito menos por ela.</p>
             `;
             document.getElementById('resumoDetalhado').innerHTML = htmlResumo;
 
@@ -662,7 +661,9 @@
             animateValue("totalTrend", 0, totalTrend, 1000);
             animateValue("economiaAcumulada", 0, economiaAcumuladaTotal, 1500);
             animateValue("co2Total", 0, co2Evitado, 1500, false, 1, " ton");
-            animateValue("arvoresTotal", 0, arvoresPlantadas, 1500, false, 0, " árvores");
+            
+            // ADICIONADO EMOJI DA ÁRVORE NO SUFIXO DA ANIMAÇÃO
+            animateValue("arvoresTotal", 0, arvoresPlantadas, 1500, false, 0, " árvores 🌳");
 
             updateGamification(economiaAcumuladaTotal, perfil);
             updateCharts(totalMedio, totalTrend, labelsLine, dataLine);
